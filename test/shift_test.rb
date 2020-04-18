@@ -19,6 +19,13 @@ class ShiftTest < Minitest::Test
     assert_equal 1672401025, @shift.date_squared
   end
 
+  def test_it_can_build_shift_collection
+    expected = {A: 1, B: 0, C: 2, D: 5}
+    assert_equal expected, @shift.build_shift_collection("1025")
+    expected = {A: 2, B: 27, C: 71, D: 15}
+    assert_equal expected, @shift.build_shift_collection(["02", "27", "71", "15"])
+  end
+
   def test_it_can_get_date_offset
     expected = {A: 1, B: 0, C: 2, D: 5}
     assert_equal expected, @shift.date_offset
