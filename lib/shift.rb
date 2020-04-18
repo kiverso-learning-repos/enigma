@@ -21,23 +21,13 @@ class Shift
   end
 
   def date_offset
-    numbers = date_squared.to_s.chars.last(4)
-    letters = [*"A" .. "D"]
-    offset = {}
-    letters.each do |letter|
-      offset[letter.to_sym] = numbers[letters.index(letter)].to_i
-    end
-    offset
+    date_shifts = date_squared.to_s.chars.last(4)
+    build_shift_collection(date_shifts)
   end
 
   def keys_collection
-    numbers = @key.chars.each_cons(2).map { |number1, number2| number1 + number2 }
-    letters = [*"A" .. "D"]
-    offset = {}
-    letters.each do |letter|
-      offset[letter.to_sym] = numbers[letters.index(letter)].to_i
-    end
-    offset
+    key_shifts = @key.chars.each_cons(2).map { |number1, number2| number1 + number2 }
+    build_shift_collection(key_shifts)
   end
 
 end
