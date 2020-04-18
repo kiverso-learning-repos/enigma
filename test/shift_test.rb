@@ -36,4 +36,9 @@ class ShiftTest < Minitest::Test
     assert_equal expected, @shift.keys_collection
   end
 
+  def test_it_can_get_total_shifts
+    expected = {A: 3, B: 27, C: 73, D: 20}
+    assert_equal expected, @shift.total_shifts
+  end
+
 end

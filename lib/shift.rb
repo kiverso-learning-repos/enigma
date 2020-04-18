@@ -26,8 +26,16 @@ class Shift
   end
 
   def keys_collection
-    key_shifts = @key.chars.each_cons(2).map { |number1, number2| number1 + number2 }
+    key_shifts = @key.chars.each_cons(2).map do |number1, number2|
+      number1 + number2
+    end
     build_shift_collection(key_shifts)
   end
 
+  def total_shifts
+    keys = keys_collection
+    offset_shifts = date_offset
+    offset_shifts.each { |shift_letter, offset| keys[shift_letter] += offset }
+    keys
+  end
 end
