@@ -24,4 +24,9 @@ class ShiftTest < Minitest::Test
     assert_equal expected, @shift.date_offset
   end
 
+  def test_it_can_get_keys_collection
+    expected = {A: 2, B: 27, C: 71, D: 15}
+    assert_equal expected, @shift.keys_collection
+  end
+
 end

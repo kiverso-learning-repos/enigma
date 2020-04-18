@@ -21,5 +21,14 @@ class Shift
     offset
   end
 
-  
+  def keys_collection
+    numbers = @key.chars.each_cons(2).map { |number1, number2| number1 + number2 }
+    letters = [*"A" .. "D"]
+    offset = {}
+    letters.each do |letter|
+      offset[letter.to_sym] = numbers[letters.index(letter)].to_i
+    end
+    offset
+  end
+
 end
