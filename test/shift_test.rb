@@ -19,5 +19,9 @@ class ShiftTest < Minitest::Test
     assert_equal 1672401025, @shift.date_squared
   end
 
+  def test_it_can_get_date_offset
+    expected = {A: 1, B: 0, C: 2, D: 5}
+    assert_equal expected, @shift.date_offset
+  end
 
 end
