@@ -5,17 +5,21 @@ attr_reader :characters
     @characters = characters
   end
 
+  def get_encoded_character(character, shift)
+    if @characters.include?(character)
+      encoded_characters = @characters.rotate(shift)
+      encoded_characters[@characters.index(character)]
+    else
+      character
+    end
+  end
+
   def create_encryption(message, key, date)
-    shift = Shift.new(key, date).total_shifts.values
+    shifts = Shift.new(key, date).total_shifts.values
     encryption = []
     message.downcase.each_char do |character|
-      if @characters.include?(character)
-        encoded_characters = @characters.rotate(shift.first)
-        encryption << encoded_characters[@characters.index(character)]
-      else
-        encryption << character
-      end
-      shift = shift.rotate(1)
+      encryption << get_encoded_character(character, shifts.first)
+      shifts = shifts.rotate(1)
     end
     encryption.join
   end

@@ -16,9 +16,13 @@ class EnigmaTest < Minitest::Test
     assert_equal expected, @enigma.characters
   end
 
+  def test_it_can_get_encoded_character
+    assert_equal "k", @enigma.get_encoded_character("h", 3)
+    assert_equal "@", @enigma.get_encoded_character("@", 33)
+  end
+
   def test_it_can_encrypt
     assert_equal "keder ohulw", @enigma.create_encryption("hello world", "02715", "040895")
     assert_equal "keder ohulw.", @enigma.create_encryption("Hello World.", "02715", "040895")
-
   end
 end
