@@ -45,4 +45,8 @@ attr_reader :characters
     now = Time.now
     now.strftime("%m%d%y")
   end
+
+  def generate_number
+    rand(100000)
+  end
 end

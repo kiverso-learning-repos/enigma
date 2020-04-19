@@ -69,4 +69,10 @@ class EnigmaTest < Minitest::Test
     assert_equal "041520", @enigma.current_date
   end
 
+  def test_it_can_get_random_number
+    number = @enigma.generate_number
+    assert_instance_of Integer, number
+  end
+
+
 end
