@@ -45,6 +45,16 @@ class EnigmaTest < Minitest::Test
   assert_equal expected, @enigma.encrypt("hello world", "02715")
   end
 
+  def test_it_can_encrypt_with_random_key_and_current_date
+    Time.stubs(:now).returns(Time.new(1995, 04, 8))
+    @enigma.stubs(:generate_number).returns(2715)
+    expected = {
+                encryption: "keder ohulw",
+                key: "02715",
+                date: "040895"
+                }
+  assert_equal expected, @enigma.encrypt("hello world")
+  end
 
   def test_it_can_decrypt_with_given_date_and_key
     expected = {
@@ -83,6 +93,4 @@ class EnigmaTest < Minitest::Test
     @enigma.stubs(:generate_number).returns(6)
     assert_equal "00006", @enigma.generate_key
   end
-
-
 end

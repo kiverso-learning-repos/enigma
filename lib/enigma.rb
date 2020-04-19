@@ -22,7 +22,7 @@ attr_reader :characters
     encryption.join
   end
 
-  def encrypt(message, key, date = current_date)
+  def encrypt(message, key = generate_key, date = current_date)
     shifts = Shift.new(key, date).total_shifts.values
     encryption = {}
     encryption[:encryption] = shift_message(message, shifts)
@@ -57,5 +57,4 @@ attr_reader :characters
     end
     key_number
   end
-
 end
