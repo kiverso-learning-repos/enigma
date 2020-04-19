@@ -14,9 +14,7 @@ attr_reader :characters
     end
   end
 
-  def create_encryption(message, key, date)
-    shifts = Shift.new(key, date).total_shifts.values
-    encryption = []
+  def shift_message(message, shifts, encryption = [])
     message.downcase.each_char do |character|
       encryption << get_encoded_character(character, shifts.first)
       shifts = shifts.rotate(1)
@@ -24,4 +22,12 @@ attr_reader :characters
     encryption.join
   end
 
+  def encrypt(message, key, date)
+    shifts = Shift.new(key, date).total_shifts.values
+    encryption = {}
+    encryption[:encryption] = shift_message(message, shifts)
+    encryption[:key] = key
+    encryption[:date] = date
+    encryption
+  end
 end
