@@ -57,4 +57,15 @@ attr_reader :characters
     end
     key_number
   end
+
+  def user_input
+    ARGV
+  end
+
+  def read_from_txt
+    filepath = user_input.first
+    message = File.read(filepath).split
+    message.join(" ")
+  end
+
 end
