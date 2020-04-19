@@ -3,6 +3,7 @@ require "./test/test_helper"
 class ShiftTest < Minitest::Test
   def setup
     @shift = Shift.new("02715", "040895")
+    @shift2 = Shift.new("12134", "121205")
   end
 
   def test_it_exists
@@ -16,6 +17,7 @@ class ShiftTest < Minitest::Test
 
   def test_it_can_get_date_squared
     assert_equal 1672401025, @shift.date_squared
+    assert_equal 14690652025, @shift2.date_squared
   end
 
   def test_it_can_build_shift_collection
@@ -39,5 +41,4 @@ class ShiftTest < Minitest::Test
     expected = {A: 3, B: 27, C: 73, D: 20}
     assert_equal expected, @shift.total_shifts
   end
-
 end
