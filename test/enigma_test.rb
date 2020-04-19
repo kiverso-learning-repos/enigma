@@ -43,4 +43,10 @@ class EnigmaTest < Minitest::Test
                 }
     assert_equal expected, @enigma.decrypt("keder ohulw", "02715", "040895")
   end
+
+  def test_it_can_get_current_date
+    Time.stubs(:now).returns(Time.new(2020, 04, 15))
+    assert_equal "041520", @enigma.current_date
+  end
+
 end

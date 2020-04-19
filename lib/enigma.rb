@@ -40,4 +40,9 @@ attr_reader :characters
     decryption[:date] = date
     decryption
   end
+
+  def current_date
+    now = Time.now
+    now.strftime("%m%d%y")
+  end
 end
