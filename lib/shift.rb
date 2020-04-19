@@ -6,8 +6,11 @@ class Shift
   end
 
   def date_squared
-    date = @date
-    date[0] = '' if date[0] == "0"
+    if date[0] == "0"
+      date = @date[1..-1]
+    else
+      date = @date
+    end
     date.to_i ** 2
   end
 
