@@ -62,10 +62,15 @@ attr_reader :characters
     ARGV
   end
 
-  def read_from_txt
-    filepath = user_input.first
+  def read_from_txt(filepath = user_input.first)
     message = File.read(filepath).split("\n")
     message.join(" ")
   end
+
+  def write_to_txt(message)
+    filepath = user_input[1]
+    File.write(filepath, message)
+  end
+
 
 end

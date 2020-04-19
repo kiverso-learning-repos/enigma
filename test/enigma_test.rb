@@ -99,8 +99,20 @@ class EnigmaTest < Minitest::Test
     @enigma.stubs(:user_input).returns(filepaths)
     expected = "Hello World!"
     assert_equal expected, @enigma.read_from_txt
+    assert_equal expected, @enigma.read_from_txt("./text_files/test_message.txt")
   end
 
-  
+  def test_it_can_write_to_txt
+    filepaths = ["./text_files/test_message.txt", "./text_files/test_message_write.txt"]
+    @enigma.stubs(:user_input).returns(filepaths)
+    assert_equal false, File.exists?("./text_files/test_message_write.txt")
+    @enigma.write_to_txt("hello world")
+    assert_equal true, File.exists?("./text_files/test_message_write.txt")
+    expected = "hello world"
+    assert_equal expected, @enigma.read_from_txt("./text_files/test_message_write.txt")
+    File.delete("./text_files/test_message_write.txt")
+  end
+
+
 
 end
