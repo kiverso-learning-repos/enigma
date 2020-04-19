@@ -26,7 +26,7 @@ class EnigmaTest < Minitest::Test
     assert_equal "keder ohulw.", @enigma.shift_message("Hello World.", [3, 27, 73, 20])
   end
 
-  def test_it_can_encrypt
+  def test_it_can_encrypt_with_given_date_and_key
     expected = {
                 encryption: "keder ohulw",
                 key: "02715",
@@ -35,12 +35,62 @@ class EnigmaTest < Minitest::Test
   assert_equal expected, @enigma.encrypt("hello world", "02715", "040895")
   end
 
-  def test_it_can_decrypt
+  def test_it_can_encrypt_with_given_key_and_current_date
+    Time.stubs(:now).returns(Time.new(1995, 04, 8))
+    expected = {
+                encryption: "keder ohulw",
+                key: "02715",
+                date: "040895"
+                }
+  assert_equal expected, @enigma.encrypt("hello world", "02715")
+  end
+
+  def test_it_can_encrypt_with_random_key_and_current_date
+    Time.stubs(:now).returns(Time.new(1995, 04, 8))
+    @enigma.stubs(:generate_number).returns(2715)
+    expected = {
+                encryption: "keder ohulw",
+                key: "02715",
+                date: "040895"
+                }
+  assert_equal expected, @enigma.encrypt("hello world")
+  end
+
+  def test_it_can_decrypt_with_given_date_and_key
     expected = {
                 decryption: "hello world",
                 key: "02715",
                 date: "040895"
                 }
     assert_equal expected, @enigma.decrypt("keder ohulw", "02715", "040895")
+  end
+
+  def test_it_can_decrypt_with_given_key_and_current_date
+    Time.stubs(:now).returns(Time.new(1995, 04, 8))
+    expected = {
+                decryption: "hello world",
+                key: "02715",
+                date: "040895"
+                }
+    assert_equal expected, @enigma.decrypt("keder ohulw", "02715")
+  end
+
+  def test_it_can_get_current_date
+    Time.stubs(:now).returns(Time.new(2020, 04, 15))
+    assert_equal "041520", @enigma.current_date
+  end
+
+  def test_it_can_get_random_number
+    number = @enigma.generate_number
+    assert_instance_of Integer, number
+  end
+
+  def test_it_can_generate_keys
+    @enigma.stubs(:generate_number).returns(23456)
+    assert_equal "23456", @enigma.generate_key
+    @enigma.stubs(:generate_number).returns(3456)
+    assert_equal "03456", @enigma.generate_key
+    @enigma.stubs(:generate_number).returns(6)
+    assert_equal "00006", @enigma.generate_key
   end
 end

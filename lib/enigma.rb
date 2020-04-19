@@ -22,7 +22,7 @@ attr_reader :characters
     encryption.join
   end
 
-  def encrypt(message, key, date)
+  def encrypt(message, key = generate_key, date = current_date)
     shifts = Shift.new(key, date).total_shifts.values
     encryption = {}
     encryption[:encryption] = shift_message(message, shifts)
@@ -31,7 +31,7 @@ attr_reader :characters
     encryption
   end
 
-  def decrypt(message, key, date)
+  def decrypt(message, key, date = current_date)
     shifts = Shift.new(key, date).total_shifts.values
     unshifts = shifts.map{|shift_value| shift_value * -1}
     decryption = {}
@@ -39,5 +39,22 @@ attr_reader :characters
     decryption[:key] = key
     decryption[:date] = date
     decryption
+  end
+
+  def current_date
+    now = Time.now
+    now.strftime("%m%d%y")
+  end
+
+  def generate_number
+    rand(100000).to_i
+  end
+
+  def generate_key
+    key_number = generate_number.to_s
+    until key_number.length == 5
+      key_number.prepend("0")
+    end
+    key_number
   end
 end
