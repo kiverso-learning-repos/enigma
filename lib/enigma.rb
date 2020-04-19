@@ -30,4 +30,14 @@ attr_reader :characters
     encryption[:date] = date
     encryption
   end
+
+  def decrypt(message, key, date)
+    shifts = Shift.new(key, date).total_shifts.values
+    unshifts = shifts.map{|shift_value| shift_value * -1}
+    decryption = {}
+    decryption[:decryption] = shift_message(message, unshifts)
+    decryption[:key] = key
+    decryption[:date] = date
+    decryption
+  end
 end
