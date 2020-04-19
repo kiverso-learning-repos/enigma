@@ -47,6 +47,15 @@ attr_reader :characters
   end
 
   def generate_number
-    rand(100000)
+    rand(100000).to_i
   end
+
+  def generate_key
+    key_number = generate_number.to_s
+    until key_number.length == 5
+      key_number.prepend("0")
+    end
+    key_number
+  end
+
 end
