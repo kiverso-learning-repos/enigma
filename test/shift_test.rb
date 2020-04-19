@@ -4,6 +4,7 @@ class ShiftTest < Minitest::Test
   def setup
     @shift = Shift.new("02715", "040895")
     @shift2 = Shift.new("12134", "121205")
+    @shift3 = Shift.new("09715", "040895")
   end
 
   def test_it_exists
@@ -35,6 +36,8 @@ class ShiftTest < Minitest::Test
   def test_it_can_get_keys_collection
     expected = {A: 2, B: 27, C: 71, D: 15}
     assert_equal expected, @shift.keys_collection
+    expected = {A: 9, B: 97, C: 71, D: 15}
+    assert_equal expected, @shift3.keys_collection
   end
 
   def test_it_can_get_total_shifts
