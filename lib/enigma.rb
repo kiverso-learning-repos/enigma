@@ -64,7 +64,7 @@ attr_reader :characters
 
   def read_from_txt
     filepath = user_input.first
-    message = File.read(filepath).split
+    message = File.read(filepath).split("\n")
     message.join(" ")
   end
 
