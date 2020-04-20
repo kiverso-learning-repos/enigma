@@ -24,7 +24,7 @@ class MessageTest < Minitest::Test
   end
 
   def test_it_can_shift_text
-    assert_equal "keder ohulw", @message1.shift_text("hello world", [3, 27, 73, 20])
-    assert_equal "keder ohulw!", @message2.shift_text("Hello World!", [3, 27, 73, 20])
+    assert_equal "keder ohulw", @message1.shift_text([3, 27, 73, 20])
+    assert_equal "keder ohulw!", @message2.shift_text([3, 27, 73, 20])
   end
 end

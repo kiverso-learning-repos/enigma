@@ -15,8 +15,8 @@ attr_reader :text, :encryptable_characters
     end
   end
 
-  def shift_text(text, shifts, encryption = [])
-    text.downcase.each_char do |character|
+  def shift_text(shifts, encryption = [])
+    @text.downcase.each_char do |character|
       encryption << get_encoded_character(character, shifts.first)
       shifts = shifts.rotate(1)
     end
