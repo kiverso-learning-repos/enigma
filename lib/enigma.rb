@@ -72,5 +72,13 @@ attr_reader :characters
     File.write(filepath, message)
   end
 
+  def encrypt_from_file
+    filepath = user_input[1]
+    message = read_from_txt
+    encryption = encrypt(message)
+    encrypted_message = encryption[:encryption]
+    write_to_txt(encrypted_message)
+    "Created '#{filepath}' with the key #{encryption[:key]} and date #{encryption[:date]}"
+  end
 
 end

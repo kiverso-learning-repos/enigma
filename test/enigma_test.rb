@@ -113,6 +113,18 @@ class EnigmaTest < Minitest::Test
     File.delete("./text_files/test_message_write.txt")
   end
 
+  def test_it_can_encrypt_from_file
+    filepaths = ["./text_files/test_message.txt", "./text_files/encrypted.txt"]
+    @enigma.stubs(:user_input).returns(filepaths)
+    Time.stubs(:now).returns(Time.new(1995, 04, 8))
+    @enigma.stubs(:generate_number).returns(2715)
+    assert_equal false, File.exists?("./text_files/encrypted.txt")
+    expected = "Created './text_files/encrypted.txt' with the key 02715 and date 040895"
+    assert_equal expected, @enigma.encrypt_from_file
+    assert_equal "keder ohulw!", @enigma.read_from_txt("./text_files/encrypted.txt")
+    File.delete("./text_files/encrypted.txt")
+  end
+
 
 
 end
