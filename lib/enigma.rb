@@ -91,5 +91,4 @@ attr_reader :characters
     write_to_txt(decrypted_message)
     "Created '#{filepath}' with the key #{decryption[:key]} and date #{decryption[:date]}"
   end
-
 end
