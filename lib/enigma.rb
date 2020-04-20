@@ -81,4 +81,15 @@ attr_reader :characters
     "Created '#{filepath}' with the key #{encryption[:key]} and date #{encryption[:date]}"
   end
 
+  def decrypt_from_file
+    filepath = user_input[1]
+    date = user_input[3]
+    key = user_input[2]
+    message = read_from_txt
+    decryption = decrypt(message, key, date)
+    decrypted_message = decryption[:decryption]
+    write_to_txt(decrypted_message)
+    "Created '#{filepath}' with the key #{decryption[:key]} and date #{decryption[:date]}"
+  end
+
 end
