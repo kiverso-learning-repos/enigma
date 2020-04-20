@@ -1,0 +1,3 @@
+class PlainText < Message
+
+end
