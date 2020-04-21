@@ -27,4 +27,11 @@ class MessageTest < Minitest::Test
     assert_equal "keder ohulw", @message1.shift_text([3, 27, 73, 20])
     assert_equal "keder ohulw!", @message2.shift_text([3, 27, 73, 20])
   end
+
+  def test_it_can_create_messages_from_txt_file
+    filepath = "./text_files/test_message.txt"
+    expected = "Hello World!"
+    new_message = Message.from_txt(filepath)
+    assert_equal expected, new_message.text
+  end
 end

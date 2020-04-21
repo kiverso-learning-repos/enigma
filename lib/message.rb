@@ -1,5 +1,11 @@
 class Message
 
+  def self.from_txt(filepath)
+    message = File.read(filepath).split("\n")
+    message = message.join(" ")
+    self.new(message)
+  end
+
 attr_reader :text, :encryptable_characters
   def initialize(text, encryptable_characters = (("a".."z").to_a << " "))
     @encryptable_characters = encryptable_characters
