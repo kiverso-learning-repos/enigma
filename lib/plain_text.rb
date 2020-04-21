@@ -7,5 +7,4 @@ class PlainText < Message
     encryption[:date] = ""
     encryption
   end
-
 end

@@ -35,12 +35,4 @@ class CipherTextTest < Minitest::Test
                 }
     assert_equal expected, @message1.decrypt([3, 27, 73, 20])
   end
-
-  def test_it_can_create_messages_from_txt_file
-    filepath = "./text_files/test_message.txt"
-    expected = "Hello World!"
-    new_message = CipherText.from_txt(filepath)
-    assert_instance_of CipherText, new_message
-    assert_equal expected, new_message.text
-  end
 end
