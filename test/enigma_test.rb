@@ -77,6 +77,10 @@ class EnigmaTest < Minitest::Test
     assert_equal "00006", @enigma.generate_key
   end
 
+  def test_user_input_is_an_empty_array_by_default
+    assert_equal [], @enigma.user_input
+  end
+
   def test_it_can_read_from_txt_file
     filepaths = ["./text_files/test_message.txt", "./text_files/test_message_encrypted.txt"]
     @enigma.stubs(:user_input).returns(filepaths)
